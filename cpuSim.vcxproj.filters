@@ -66,5 +66,8 @@
     <ClInclude Include="control_logic.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPU.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

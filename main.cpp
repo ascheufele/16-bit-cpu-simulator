@@ -12,6 +12,7 @@
 #include "memory.hpp";
 #include "alu.hpp";
 #include "control_logic.hpp";
+#include "CPU.hpp";
 
 // notes
 // probably want to take this approach when optimizing:
@@ -44,13 +45,14 @@ void load_program()
 int main(void)
 {
 	sf::RenderWindow win(sf::VideoMode(800, 600), "CPU Simulator");
-	Clock clock;
-	Register A, B;
-	Program_Counter programCounter;
+	//Clock clock;
+	//Register A, B;
+	//Program_Counter programCounter;
 
 	// set up
-	load_program();
-	load_microcode();
+	//load_program();
+	//load_microcode();
+	CPU cpu;
 	
 	while (win.isOpen())
 	{
@@ -64,7 +66,7 @@ int main(void)
 		}
 
 		win.clear();
-		// step
+		cpu.step();
 		// draw
 		win.display();
 

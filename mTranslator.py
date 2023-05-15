@@ -16,6 +16,7 @@ print(first_pass)
 f = open("./microcode.txt", "w")
 
 # second pass
+# if this changes it also must be updated in control_logic.hpp
 defs = ['pc incr', 'ram in', 'ram out', 'a in', 'a out', 'ir in', 'reset', 'b in', 'alu out', 'halt']
 
 for i in range(len(first_pass)):

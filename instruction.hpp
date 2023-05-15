@@ -23,7 +23,11 @@ struct instruction
 			unsigned int bit_14 : 1;
 			unsigned int bit_15 : 1;
 		};
-		uint8_t value;
+		struct data
+		{
+			uint8_t opcode;
+			uint8_t immediate;
+		};
 	};
 };
 typedef struct instruction Instruction;
