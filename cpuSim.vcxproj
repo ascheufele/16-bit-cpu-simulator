@@ -144,6 +144,16 @@
     <None Include="myProgram.zander.binary" />
     <None Include="programTranslator.py" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="alu.hpp" />
+    <ClInclude Include="bus.hpp" />
+    <ClInclude Include="clock.hpp" />
+    <ClInclude Include="control_logic.hpp" />
+    <ClInclude Include="instruction.hpp" />
+    <ClInclude Include="memory.hpp" />
+    <ClInclude Include="program_counter.hpp" />
+    <ClInclude Include="register.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
