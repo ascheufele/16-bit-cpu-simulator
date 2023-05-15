@@ -1,0 +1,4 @@
+ldi 1
+addi 2
+halt
+.end
