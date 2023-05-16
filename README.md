@@ -15,9 +15,9 @@ I am writing my own microcode and macrocode for the CPU so it can run user progr
 
 Is this 8-bit or 16-bit? This is something I ask myself constantly
    - Each instruction is 16 bits wide, with 8 bits for the opcode and 8 bits for an immediate value.
-   - The bus is 16-bits wide
+   - The bus is 16-bits wide, HOWEVER component are either connected to the 8 MSB (Instruction Register) or 8 LSB (arithmetic and scratchpad registers) on the bus
    - The registers are 8-bits wide
-   - Due to register size and immediate values being limited to 8-bits I tend to lean towards "8-bit", but I'm open to counter-arguments.
+   - Due to register size, immediate values, and the nature of the 'split' bus, being limited to 8-bits I tend to lean towards "8-bit", but I'm open to counter-arguments.
 
 My end goal is to create a GUI with the SFML library to view in real time the values in the various components as the CPU runs a program.
 
