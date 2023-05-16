@@ -6,11 +6,12 @@
 #include "bus.hpp";
 #include <stdint.h>;
 
-#define MICROCODE_WIDTH 11
+#define MICROCODE_WIDTH 23
 
 // defs = ['pc incr', 'ram in', 'ram out', 'a in', 'a out', 'ir in', 'reset', 'b in', 'alu out', 'halt']
 // if this changes it also must be updated in mTranslator.py
-enum Controls {PC_INCR, RAM_IN, RAM_OUT, A_IN, A_OUT, IR_IN, RESET, B_IN, ALU_OUT, HALT, PC_IN};
+enum Controls {PC_INCR, RAM_IN, RAM_OUT, A_IN, A_OUT, IR_IN, RESET, B_IN, ALU_OUT, HALT, PC_IN,
+				C_IN, C_OUT, D_IN, D_OUT, E_IN, E_OUT, F_IN, F_OUT, ADD, SUB, LSH, RSH};
 
 class ControlLogic
 {
@@ -21,13 +22,18 @@ public:
 	// connections to all other components
 	Clock* PC;
 	Memory* memory;
-	Register* a, * b, * output, * mar, * ir;
+	Register* a, *b, *c, *d, *e, *f, *output, *mar, *ir;
 	Bus* bus;
 	ALU* alu;
-	ControlLogic(Bus* bus, Register* a, Register* b, Register* output,
+	ControlLogic(Bus* bus, Register* a, Register* b, Register* c,
+		Register* d, Register* e, Register* f, Register* output,
 		Register* mar, Register* ir, Memory* memory, Clock* PC, ALU* alu) :
 		a(a),
 		b(b),
+		c(c),
+		d(d),
+		e(e),
+		f(f),
 		output(output),
 		mar(mar),
 		ir(ir),
@@ -73,12 +79,27 @@ public:
 			std::cout << "RAM OUT\t";
 		}
 		if (i[Controls::A_OUT]) {
-			bus->value = a->value; // 8 lsb to the bus
-			// 8 msb would be a->value << 8
+			bus->value = a->value; // 8 lsb to the bus, 8 msb would be a->value << 8
 			std::cout << "A OUT\t";
 		}
+		if (i[Controls::C_OUT]) {
+			bus->value = c->value; // 8 lsb to the bus, 8 msb would be a->value << 8
+			std::cout << "C OUT\t";
+		}
+		if (i[Controls::D_OUT]) {
+			bus->value = d->value; // 8 lsb to the bus, 8 msb would be a->value << 8
+			std::cout << "D OUT\t";
+		}
+		if (i[Controls::E_OUT]) {
+			bus->value = e->value; // 8 lsb to the bus, 8 msb would be a->value << 8
+			std::cout << "E OUT\t";
+		}
+		if (i[Controls::F_OUT]) {
+			bus->value = f->value; // 8 lsb to the bus, 8 msb would be a->value << 8
+			std::cout << "F OUT\t";
+		}
 		if (i[Controls::ALU_OUT]) {
-			bus->value = alu->add(a->value, b->value); // for now the ALU is just an adder
+			bus->value = alu->op(a->value, b->value);
 			std::cout << "ALU OUT\t";
 		}
 		if (i[Controls::A_IN]) {
@@ -93,8 +114,36 @@ public:
 			b->value = (bus->value & 0xFF); // 8 lsb from bus
 			std::cout << "B IN\t";
 		}
+		if (i[Controls::C_IN]) {
+			c->value = (bus->value & 0xFF); // 8 lsb from bus
+			std::cout << "C IN\t";
+		}
+		if (i[Controls::D_IN]) {
+			d->value = (bus->value & 0xFF); // 8 lsb from bus
+			std::cout << "D IN\t";
+		}
+		if (i[Controls::E_IN]) {
+			e->value = (bus->value & 0xFF); // 8 lsb from bus
+			std::cout << "E IN\t";
+		}
+		if (i[Controls::F_IN]) {
+			f->value = (bus->value & 0xFF); // 8 lsb from bus
+			std::cout << "F IN\t";
+		}
 		if (i[Controls::PC_IN]) {
 			PC->tick = (bus->value & 0xFF); // get address to jump to
+		}
+		if (i[Controls::ADD]) {
+			alu->mode = ALU_ADD;
+		}
+		if (i[Controls::SUB]) {
+			alu->mode = ALU_SUB;
+		}
+		if (i[Controls::LSH]) {
+			alu->mode = ALU_LSH;
+		}
+		if (i[Controls::RSH]) {
+			alu->mode = ALU_RSH;
 		}
 		if (i[Controls::HALT]) {
 			PC->pause = true;
@@ -109,7 +158,7 @@ public:
 			logicClock.tick += 1;
 		}
 		// always have alu result in output register
-		output->value = alu->add(a->value, b->value);
+		output->value = alu->op(a->value, b->value);
 	};
 private:
 };

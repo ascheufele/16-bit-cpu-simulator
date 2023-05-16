@@ -21,7 +21,7 @@ public:
 	Register ir;
 	Memory memory;
 	ALU alu;
-	CPU(std::string pathToBinary) : controlLogic(ControlLogic(&bus, &a, &b, &output, &mar, &ir, &memory, &clock, &alu)) {
+	CPU(std::string pathToBinary) : controlLogic(ControlLogic(&bus, &a, &b, &c, &d, &e, &f, &output, &mar, &ir, &memory, &clock, &alu)) {
 		// set pc to 0;
 		programCounter.value = 0;
 		clock.tick = 0;
@@ -30,6 +30,10 @@ public:
 		ir.value = 0;
 		a.value = 0;
 		b.value = 0;
+		c.value = 0;
+		d.value = 0;
+		e.value = 0;
+		f.value = 0;
 		// load the program
 		std::ifstream machineCode(pathToBinary);
 		if (!machineCode) {
