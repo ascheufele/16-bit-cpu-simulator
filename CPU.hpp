@@ -21,18 +21,19 @@ public:
 	Register mar;
 	Register ir;
 	Memory memory;
-	CPU() : controlLogic(ControlLogic(&bus, &a, &b, &output, &mar, &ir, &memory, &clock)) {
+	ALU alu;
+	CPU() : controlLogic(ControlLogic(&bus, &a, &b, &output, &mar, &ir, &memory, &clock, &alu)) {
 		// set pc to 0;
 		programCounter.value = 0;
 		// set MAR to 0;
 		mar.value = 0;
+		ir.value = 0;
 		// connect the components to the bus
-		a.bus = &(this->bus);
-		b.bus = &(this->bus);
-		mar.bus = &(this->bus);
-		ir.bus = &(this->bus);
 	};
 	void step() {
+		if (clock.pause) {
+			return;
+		}
 		controlLogic.step();
 	};
 };
