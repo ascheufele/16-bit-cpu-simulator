@@ -16,3 +16,6 @@
 # ldb (immediate value into b)
 9: ram out, b in;
 10: pc incr, ram out, ir in, reset;
+# goto (immediate value into instruction register)
+11: pc inp;
+12: ram out, ir in, reset;

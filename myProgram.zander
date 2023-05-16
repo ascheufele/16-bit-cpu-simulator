@@ -1,5 +1,5 @@
-lda 9
-addi 5
-ldb 6
+lda 1
+addi 1
+goto 1
 halt
 .end

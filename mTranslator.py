@@ -17,11 +17,11 @@ f = open("./microcode.txt", "w")
 
 # second pass
 # if this changes it also must be updated in control_logic.hpp
-defs = ['pc incr', 'ram in', 'ram out', 'a in', 'a out', 'ir in', 'reset', 'b in', 'alu out', 'halt']
+defs = ['pc incr', 'ram in', 'ram out', 'a in', 'a out', 'ir in', 'reset', 'b in', 'alu out', 'halt', 'pc inp']
 
 for i in range(len(first_pass)):
 	code = first_pass[i]
-	instruction = list("0000000000\n")
+	instruction = list("00000000000\n")		# must be updated when the microcode width changes. I'm going to look into using a DLL for this'
 	for j in range(len(defs)):
 		if code.__contains__(defs[j]):
 			instruction[j] = '1'

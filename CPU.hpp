@@ -15,8 +15,7 @@ public:
 	Clock clock;
 	Program_Counter programCounter;
 	ControlLogic controlLogic;
-	Register a;
-	Register b;
+	Register a, b, c, d, e, f;
 	Register output;
 	Register mar;
 	Register ir;
@@ -57,7 +56,7 @@ public:
 	};
 	void prettyPrint() {
 		std::cout << std::endl << "PC: " << clock.tick << std::endl;
-		std::cout << "IR: " << (unsigned int)ir.value << std::endl;
+		std::cout << "MAR: " << (unsigned int)ir.value << std::endl;
 		std::cout << "BUS: " << (unsigned int)bus.value << std::endl;
 		std::cout << "A: " << (unsigned int)a.value << std::endl;
 		std::cout << "B: " << (unsigned int)b.value << std::endl;

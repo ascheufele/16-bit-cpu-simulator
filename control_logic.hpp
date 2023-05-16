@@ -6,11 +6,11 @@
 #include "bus.hpp";
 #include <stdint.h>;
 
-#define MICROCODE_WIDTH 10
+#define MICROCODE_WIDTH 11
 
 // defs = ['pc incr', 'ram in', 'ram out', 'a in', 'a out', 'ir in', 'reset', 'b in', 'alu out', 'halt']
 // if this changes it also must be updated in mTranslator.py
-enum Controls {PC_INCR, RAM_IN, RAM_OUT, A_IN, A_OUT, IR_IN, RESET, B_IN, ALU_OUT, HALT};
+enum Controls {PC_INCR, RAM_IN, RAM_OUT, A_IN, A_OUT, IR_IN, RESET, B_IN, ALU_OUT, HALT, PC_IN};
 
 class ControlLogic
 {
@@ -53,8 +53,7 @@ public:
 		}
 	};
 	void step() {
-		//bus->value = 0; // clear bus from last cycle (note: WRONG)
-		// evaluate the microcode instruction at microcode[PC + logicClock]
+		// evaluate the microcode instruction at microcode[IR + logicClock]
 		// and carry out the modifications to the system components
 		std::vector<int>& i = microcode[ir->value + logicClock.tick];
 		for (auto a = i.begin(); a < i.end(); a++)
@@ -74,7 +73,6 @@ public:
 			std::cout << "RAM OUT\t";
 		}
 		if (i[Controls::A_OUT]) {
-			// a->out = true; // is this field even necessary?
 			bus->value = a->value; // 8 lsb to the bus
 			// 8 msb would be a->value << 8
 			std::cout << "A OUT\t";
@@ -94,6 +92,9 @@ public:
 		if (i[Controls::B_IN]) {
 			b->value = (bus->value & 0xFF); // 8 lsb from bus
 			std::cout << "B IN\t";
+		}
+		if (i[Controls::PC_IN]) {
+			PC->tick = (bus->value & 0xFF); // get address to jump to
 		}
 		if (i[Controls::HALT]) {
 			PC->pause = true;
