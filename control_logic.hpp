@@ -53,44 +53,62 @@ public:
 		}
 	};
 	void step() {
-		bus->value = 0; // clear bus from last cycle
+		//bus->value = 0; // clear bus from last cycle (note: WRONG)
 		// evaluate the microcode instruction at microcode[PC + logicClock]
 		// and carry out the modifications to the system components
-		std::vector<int>& i = microcode[PC->tick + logicClock.tick];
+		std::vector<int>& i = microcode[ir->value + logicClock.tick];
+		for (auto a = i.begin(); a < i.end(); a++)
+		{
+			std::cout << *a;
+		}
+		std::cout << std::endl;
+		std::cout << logicClock.tick << std::endl;
 
 		if (i[Controls::PC_INCR]) {
 			PC->tick++;
+			std::cout << "PC INCR\t";
 		}
 
 		if (i[Controls::RAM_OUT]) {
-			bus->value |= memory->instructions[PC->tick].value;
+			bus->value = memory->instructions[PC->tick].value;
+			std::cout << "RAM OUT\t";
 		}
 		if (i[Controls::A_OUT]) {
 			// a->out = true; // is this field even necessary?
-			bus->value |= a->value; // 8 lsb to the bus
+			bus->value = a->value; // 8 lsb to the bus
 			// 8 msb would be a->value << 8
+			std::cout << "A OUT\t";
 		}
 		if (i[Controls::ALU_OUT]) {
-			bus->value |= alu->add(a->value, b->value); // for now the ALU is just an adder
+			bus->value = alu->add(a->value, b->value); // for now the ALU is just an adder
+			std::cout << "ALU OUT\t";
 		}
 		if (i[Controls::A_IN]) {
-			a->value = bus->value & 0xFF00; // 8 lsb from bus
+			a->value = (bus->value & 0xFF); // 8 lsb from bus
+			std::cout << "A IN\t";
 		}
 		if (i[Controls::IR_IN]) {
-			ir->value = bus->value;
+			ir->value = (bus->value >> 8);
+			std::cout << "IR IN\t";
 		}
 		if (i[Controls::B_IN]) {
-			b->value = bus->value & 0xFF00; // 8 lsb from bus
+			b->value = (bus->value & 0xFF); // 8 lsb from bus
+			std::cout << "B IN\t";
 		}
 		if (i[Controls::HALT]) {
-			PC->pause;
+			PC->pause = true;
+			std::cout << "HALT\t";
 		}
 		if (i[Controls::RESET]) {
 			logicClock.tick = 0;
+			std::cout << "RESET\t";
+			// PC->tick = 0;
 		}
 		if (0 == i[Controls::RESET]) {
 			logicClock.tick += 1;
 		}
+		// always have alu result in output register
+		output->value = alu->add(a->value, b->value);
 	};
 private:
 };

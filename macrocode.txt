@@ -1,10 +1,11 @@
 # Load next instruction
-0: ram out, ir in;
-# ldi (into b)
-1: pc incr, ram out, b in;
-# addi (a to b store res in a)
-2: ram out, b in;
-3: pc incr, a in, alu out;
-4: ram out, ir in, reset;
+0: ram out, ir in, reset;
+# ldi (into a)
+1: ram out, a in;
+2: pc incr, ram out, ir in, reset;
+# addi (immediate value + a = store result in a)
+3: ram out, b in;
+4: pc incr, alu out, a in;
+5: ram out, ir in, reset;
 # halt
-5: halt;
+6: halt;

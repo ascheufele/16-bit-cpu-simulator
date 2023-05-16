@@ -52,7 +52,7 @@ int main(void)
 	// set up
 	//load_program();
 	//load_microcode();
-	CPU cpu;
+	CPU cpu("./myProgram.zander.binary");
 	
 	while (win.isOpen())
 	{

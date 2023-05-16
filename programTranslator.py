@@ -5,9 +5,9 @@ filename = sys.argv[1]
 f = open(filename)
 
 instructions = {
-	"ldi": "00000001",
-	"addi": "00000010",
-	"halt": "00000101"
+	"ldi": "00000001", # 1
+	"addi": "00000011", # 3
+	"halt": "00000110" # 6
 }
 
 def to_binary(num, res):
