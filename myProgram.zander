@@ -1,5 +1,5 @@
 ldi 1
 addi 2
-addi 42
+addi 7
 halt
 .end

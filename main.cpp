@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <stdint.h>
@@ -44,6 +45,8 @@ void load_program()
 
 int main(void)
 {
+	std::system("python ./mTranslator.py"); // update microcode
+	std::system("python ./programTranslator.py myProgram.zander"); // update program binary
 	sf::RenderWindow win(sf::VideoMode(800, 600), "CPU Simulator");
 	//Clock clock;
 	//Register A, B;
