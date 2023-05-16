@@ -5,7 +5,7 @@
 1: ram out, a in;
 2: pc incr, ram out, ir in, reset;
 # addi (immediate value + a = store result in a)
-3: ram out, b in;
+3: ram out, b in, add;
 4: pc incr, alu out, a in;
 5: ram out, ir in, reset;
 # halt
@@ -19,3 +19,7 @@
 # goto (immediate value into instruction register)
 11: pc inp;
 12: ram out, ir in, reset;
+# subi (subtract immediate value from a and store result in a)
+13: ram out, b in, sub;
+14: alu out, a in;
+15: pc incr, ram out, ir in, reset;

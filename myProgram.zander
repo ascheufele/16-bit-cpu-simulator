@@ -1,5 +1,4 @@
-lda 1
-addi 1
-goto 1
+lda 6
+subi 4
 halt
 .end

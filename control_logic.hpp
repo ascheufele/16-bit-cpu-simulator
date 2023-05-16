@@ -132,18 +132,23 @@ public:
 		}
 		if (i[Controls::PC_IN]) {
 			PC->tick = (bus->value & 0xFF); // get address to jump to
+			std::cout << "PC IN\t";
 		}
 		if (i[Controls::ADD]) {
 			alu->mode = ALU_ADD;
+			std::cout << "ADD\t";
 		}
 		if (i[Controls::SUB]) {
 			alu->mode = ALU_SUB;
+			std::cout << "SUB\t";
 		}
 		if (i[Controls::LSH]) {
 			alu->mode = ALU_LSH;
+			std::cout << "LSH\t";
 		}
 		if (i[Controls::RSH]) {
 			alu->mode = ALU_RSH;
+			std::cout << "RSH\t";
 		}
 		if (i[Controls::HALT]) {
 			PC->pause = true;
