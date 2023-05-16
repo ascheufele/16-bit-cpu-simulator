@@ -62,8 +62,6 @@ public:
 			PC->tick++;
 		}
 
-		memory->writeEnable = i[Controls::RAM_IN];
-
 		if (i[Controls::RAM_OUT]) {
 			bus->value |= memory->instructions[PC->tick].value;
 		}
