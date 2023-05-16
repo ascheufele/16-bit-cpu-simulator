@@ -1,3 +1,4 @@
+# THIS FILE NEEDS TO END IN A NEWLINE
 # Load next instruction
 0: ram out, ir in, reset;
 # ldi (into a)
@@ -9,3 +10,9 @@
 5: ram out, ir in, reset;
 # halt
 6: halt;
+# lda (immediate value into a)
+7: ram out, a in;
+8: pc incr, ram out, ir in, reset;
+# ldb (immediate value into b)
+9: ram out, b in;
+10: pc incr, ram out, ir in, reset;

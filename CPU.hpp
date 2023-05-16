@@ -61,6 +61,7 @@ public:
 		std::cout << "BUS: " << (unsigned int)bus.value << std::endl;
 		std::cout << "A: " << (unsigned int)a.value << std::endl;
 		std::cout << "B: " << (unsigned int)b.value << std::endl;
+		std::cout << "OUTPUT: " << (unsigned int)output.value << std::endl;
 		std::cout << std::endl << std::endl;
 	}
 };
