@@ -142,7 +142,7 @@
     <None Include="mTranslator.py" />
     <None Include="myProgram.zander" />
     <None Include="myProgram.zander.binary" />
-    <None Include="programTranslator.py" />
+    <None Include="assembler.py" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alu.hpp" />

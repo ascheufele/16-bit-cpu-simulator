@@ -31,7 +31,7 @@
     <None Include="mTranslator.py">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="programTranslator.py">
+    <None Include="assembler.py">
       <Filter>Source Files</Filter>
     </None>
     <None Include="myProgram.zander">

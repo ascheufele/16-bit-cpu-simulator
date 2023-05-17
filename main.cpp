@@ -46,8 +46,8 @@ void load_program()
 int main(void)
 {
 	std::system("python ./mTranslator.py"); // update microcode
-	std::system("python ./programTranslator.py myProgram.zander"); // update program binary
-	sf::RenderWindow win(sf::VideoMode(800, 600), "CPU Simulator");
+	std::system("python ./assembler.py myProgram.zander"); // update program binary
+	sf::RenderWindow win(sf::VideoMode(1280, 720), "CPU Simulator");
 	//Clock clock;
 	//Register A, B;
 	//Program_Counter programCounter;
@@ -57,6 +57,11 @@ int main(void)
 	//load_microcode();
 	CPU cpu("./myProgram.zander.binary");
 	
+	// sfml testing
+	sf::RectangleShape rect;
+	rect.setSize(sf::Vector2<float>(200.0, 200.0));
+	rect.setPosition(sf::Vector2<float>(100, 100));
+	win.draw(rect);
 	while (win.isOpen())
 	{
 		sf::Event e;
@@ -68,7 +73,7 @@ int main(void)
 			}
 		}
 
-		win.clear();
+		//win.clear();
 		cpu.step();
 		// draw
 		win.display();

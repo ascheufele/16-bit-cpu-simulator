@@ -53,7 +53,8 @@ public:
 	};
 	void step() {
 		if (clock.pause) { // halt
-			exit(0);
+			char c;
+			std::cin >> c;
 		}
 		controlLogic.step();
 		prettyPrint();
