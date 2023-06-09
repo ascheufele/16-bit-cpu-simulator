@@ -1,4 +1,6 @@
 # THIS FILE NEEDS TO END IN A NEWLINE
+# Lines that are comments begin with a '#'
+# When the program is executed, 'mTranslator.py' will convert this to microcode and load it into the CPU
 # Load next instruction
 0: ram out, ir in, reset;
 # ldi (into a)
@@ -23,3 +25,15 @@
 13: ram out, b in, sub;
 14: alu out, a in;
 15: pc incr, ram out, ir in, reset;
+# ldc (immediate value into c)
+16: ram out, c in;
+17: pc incr, ram out, ir in, reset;
+# ldd (immediate value into d)
+18: ram out, d in;
+19: pc incr, ram out, ir in, reset;
+# lde (immediate value into e)
+20: ram out, e in;
+21: pc incr, ram out, ir in, reset;
+# ldf (immediate value into f)
+22: ram out, f in;
+23: pc incr, ram out, ir in, reset;

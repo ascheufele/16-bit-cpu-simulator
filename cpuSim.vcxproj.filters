@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{681f0acb-6111-42d6-b725-dc58b71a4083}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,32 +45,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clock.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="register.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="program_counter.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bus.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="register.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="instruction.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="memory.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="alu.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="control_logic.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="instruction.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="CPU.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="control_logic.hpp">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="clock.hpp">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="bus.hpp">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="alu.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
