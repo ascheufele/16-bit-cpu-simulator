@@ -25,10 +25,14 @@ int main(void)
 	CPU cpu("./myProgram.zander.binary");
 	
 	// sfml testing
+	sf::Font font;
+	const std::string filename("Segment7Standard.otf");
+	std::cout << filename << std::endl;
+	
 	sf::RectangleShape rect;
 	rect.setSize(sf::Vector2<float>(200.0, 200.0));
 	rect.setPosition(sf::Vector2<float>(100, 100));
-	win.draw(rect);
+	//win.draw(rect);
 	while (win.isOpen())
 	{
 		sf::Event e;
@@ -40,9 +44,10 @@ int main(void)
 			}
 		}
 
-		//win.clear();
 		cpu.step();
-		// draw
+		win.clear(sf::Color::Black);
+		std::cout << "clear" << std::endl;
+		win.draw(cpu);
 		win.display();
 
 	}
