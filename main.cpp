@@ -15,6 +15,8 @@
 #include "control_logic.hpp";
 #include "CPU.hpp";
 
+void keyHandler(sf::Event e, CPU& cpu);
+
 int main(void)
 {
 	std::system("python ./mTranslator.py"); // update microcode
@@ -38,19 +40,38 @@ int main(void)
 		sf::Event e;
 		while (win.pollEvent(e))
 		{
-			if (e.type == sf::Event::Closed)
+			switch (e.type)
 			{
+			case sf::Event::Closed:
 				win.close();
+				break;
+			case sf::Event::KeyPressed:
+				keyHandler(e, cpu);
+				break;
+			default:
+				break;
 			}
 		}
 
-		cpu.step();
+		//cpu.step();
 		win.clear(sf::Color::Black);
-		std::cout << "clear" << std::endl;
+		//std::cout << "clear" << std::endl;
 		win.draw(cpu);
 		win.display();
 
 	}
 
 	return 0;
+}
+
+void keyHandler(sf::Event e, CPU& cpu)
+{
+	switch (e.key.code)
+	{
+	case sf::Keyboard::Left:
+		return;
+	case sf::Keyboard::Right:
+		cpu.step();
+		return;
+	} 
 }

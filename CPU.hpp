@@ -146,6 +146,5 @@ public:
 		target.draw(*f_text);
 		target.draw(*ir_text);
 		target.draw(*pc_text);
-		std::cout << "drawn" << std::endl;
 	}
 };
